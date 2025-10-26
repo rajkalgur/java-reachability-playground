@@ -26,6 +26,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Check generated reports
+        run: ls -R target || true
+
       # Upload JUnit test report (optional)
       - name: Upload test results
         if: always()
@@ -69,6 +73,9 @@ jobs:
           ignore-unfixed: true
           format: 'sarif'
           output: 'trivy-results.sarif'
+
+      - name: Debug Semgrep Output
+        run: ls -l
 
       - name: Upload Trivy results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
