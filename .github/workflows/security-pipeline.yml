@@ -23,7 +23,9 @@ jobs:
       - name: Build and test with Maven
       #  run: mvn clean verify --batch-mode
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=javaprojectreachabillity_javaprojectreachabillity -Dsonar.organization=javaprojectreachabillity -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
-        
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       # Upload JUnit test report (optional)
       - name: Upload test results
         if: always()
