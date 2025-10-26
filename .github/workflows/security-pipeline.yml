@@ -47,6 +47,7 @@ jobs:
         with:
           config: p/java
           generateSarif: true
+          output: semgrep.sarif
 
       - name: Upload Semgrep results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
